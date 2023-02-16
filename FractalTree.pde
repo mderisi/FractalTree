@@ -1,19 +1,78 @@
-private double fractionLength = .8; 
-private int smallestBranch = 10; 
-private double branchAngle = .2;  
+private double fractionLength = .85; 
+private int smallestBranch = 6; 
+private double branchAngle = .5;  
+
+tree[]forest = new tree[5];
+
 public void setup() 
 {   
-	size(640,480);    
-	noLoop(); 
+  size(900,700);    
+  noLoop();  
+  
+    for(int i = 0; i < 5; i++){
+    forest[i] = new tree();
+  }
+  
 } 
 public void draw() 
 {   
-	background(0);   
-	stroke(0,255,0);   
-	line(320,480,320,380);   
-	//drawBranches(??,??,??,??);  //will add later 
-} 
-public void drawBranches(int x,int y, double branchLength, double angle) 
+  background(225, 246, 250);      
+  
+ 
+ int sizX = 250;
+ int sizY = 150;
+  boolean shift = true;
+for(int n = -800; n < 800; n = n+sizX){
+  for(int i = 0; i < forest.length; i++){
+    if(shift == true){
+     forest[i].makeline((i*sizX) + n , (i * sizY));
+     forest[i].trees((i*sizX) + n , (i * sizY), 35.0, (3*Math.PI/2));
+    } else{
+      forest[i].makeline((i*sizX) + n, (i * sizY)+sizY/2);
+     forest[i].trees((i*sizX) + n, (i * sizY)+sizY/2, 30.0, (3*Math.PI/2));
+    }
+    if(shift == true){
+      shift = false;
+    } else{
+      shift = true;
+    }
+  }
+}
+
+}
+
+public class tree{
+  void makeline(int x, int y){
+    stroke(5, (int)y/3, 0);
+      line(x, y, x, y+100);
+  }
+  void trees(int x,int y, double branchLength, double angle) 
 {   
-	//your code here    
+  
+  double angle1 = angle + branchAngle;
+  double angle2 = angle - branchAngle;
+  branchLength = branchLength * fractionLength;
+
+  int endX1 = (int)(branchLength*Math.cos(angle1) + x);
+  int endY1 = (int)(branchLength*Math.sin(angle1) + y);
+  int endX2 = (int)(branchLength*Math.cos(angle2) + x);
+  int endY2 = (int)(branchLength*Math.sin(angle2) + y);
+  
+  stroke((int)branchLength/3, (int)y/3, 0);
+  line(x, y, endX1, endY1);
+  line(x, y, endX2, endY2);
+    
+  if(branchLength > smallestBranch){
+    trees(endX1, endY1, branchLength, angle1);
+    trees(endX2, endY2, branchLength, angle2);
+  }
 } 
+  
+}
+
+
+
+
+
+
+
