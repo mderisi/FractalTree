@@ -16,7 +16,7 @@ public void setup()
 } 
 public void draw() 
 {   
-  background(225, 246, 250);      
+  background(245, 250, 250);      
   
  
  int sizX = 250;
