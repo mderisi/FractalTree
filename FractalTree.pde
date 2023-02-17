@@ -1,6 +1,12 @@
 private double fractionLength = .85; 
-private int smallestBranch = 6; 
+public int smallestBranch = 30; 
 private double branchAngle = .5;  
+
+boolean MousePressed = false;
+  public void mousePressed(){
+    smallestBranch--;
+    redraw();
+  }
 
 tree[]forest = new tree[5];
 
@@ -9,9 +15,10 @@ public void setup()
   size(900,700);    
   noLoop();  
   
-    for(int i = 0; i < 5; i++){
+  for(int i = 0; i < 5; i++){
     forest[i] = new tree();
   }
+  
   
 } 
 public void draw() 
@@ -62,17 +69,14 @@ public class tree{
   line(x, y, endX1, endY1);
   line(x, y, endX2, endY2);
     
-  if(branchLength > smallestBranch){
+  if((branchLength > smallestBranch)){
     trees(endX1, endY1, branchLength, angle1);
     trees(endX2, endY2, branchLength, angle2);
+  
   }
 } 
-  
+
 }
-
-
-
-
 
 
 
