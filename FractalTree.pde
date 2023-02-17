@@ -4,8 +4,10 @@ private double branchAngle = .5;
 
 boolean MousePressed = false;
   public void mousePressed(){
-    smallestBranch--;
-    redraw();
+    if(smallestBranch >= 2){
+      smallestBranch--;
+      redraw();
+    } 
   }
 
 tree[]forest = new tree[5];
@@ -77,6 +79,3 @@ public class tree{
 } 
 
 }
-
-
-
