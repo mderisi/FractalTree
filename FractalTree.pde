@@ -69,6 +69,7 @@ public class tree{
   
   stroke((int)branchLength/3, (int)y/3, 0);
   line(x, y, endX1, endY1);
+  stroke((int)branchLength/2, (int)y/2, 0);
   line(x, y, endX2, endY2);
     
   if((branchLength > smallestBranch)){
